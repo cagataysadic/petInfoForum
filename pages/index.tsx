@@ -82,8 +82,8 @@ const Home: React.FC = () => {
       const brand = product?.brands.find(b => b.brandName === currentSelectedBrand);
       return (
         <>
-          <h1 className="flex justify-center text-sm md:text-xl mb-1">Brand Info</h1>
-          <li className="flex justify-center text-xs md:text-lg">{brand?.brandInfo}</li>
+          <h1 className="flex justify-center text-xl mb-1">Brand Info</h1>
+          <li className="flex justify-center">{brand?.brandInfo}</li>
         </>
       );
     }
@@ -92,9 +92,9 @@ const Home: React.FC = () => {
       const product = animal.careProducts.find(p => p.productName === currentSelectedProduct);
       return (
         <>
-          <h1 className="flex justify-center text-sm md:text-xl mb-2">Product Brands</h1>
+          <h1 className="flex justify-center text-xl mb-2">Product Brands</h1>
           {product?.brands.map((brand) => (
-            <li key={brand.brandName} className="flex justify-center text-xs md:text-lg hover:text-rose-400 cursor-pointer" onClick={() => setSelectedBrand({ ...selectedBrand, [animal._id]: brand.brandName })}>
+            <li key={brand.brandName} className="flex justify-center text-lg hover:text-rose-400 cursor-pointer" onClick={() => setSelectedBrand({ ...selectedBrand, [animal._id]: brand.brandName })}>
               {brand.brandName}
             </li>
           ))}
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
       <>
         <h1 className="flex justify-center text-xl mb-2">Products</h1>
         {animal.careProducts.map((product) => (
-          <h3 className="flex justify-center text-sm md:text-xl hover:text-rose-400 cursor-pointer" onClick={() => setSelectedProduct({ ...selectedProduct, [animal._id]: product.productName })}>
+          <h3 className="flex justify-center text-lg hover:text-rose-400 cursor-pointer" onClick={() => setSelectedProduct({ ...selectedProduct, [animal._id]: product.productName })}>
             {product.productName}
           </h3>
         ))}
@@ -116,24 +116,24 @@ const Home: React.FC = () => {
 
   return (
     <div className="bg-neutral-100 min-h-screen min-w-screen lg:pt-8 pt-3 flex flex-col">
-      <div className="flex flex-wrap mt-2">
+      <div className="flex flex-wrap mt-4">
         {animals.map((animal) => (
-          <div key={animal._id} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex items-center my-4">
-            <div className="flex justify-between items-center w-full">
+          <div key={animal._id} className="md:w-1/2 w-full flex items-center my-4">
+            <div className="flex justify-between items-center w-full mx-2">
               <div className="flex flex-col items-center w-1/2">
-                <div className="rounded-lg p-1 ml-2 transition-all duration-300 rotating-border" style={{animationName: themeAnimationName(animal.animalName)}}>
+                <div className="rounded-lg p-1 transition-all duration-300 rotating-border" style={{animationName: themeAnimationName(animal.animalName)}}>
                   <Image src={getImageSrc(animal.animalName)} alt={`${animal.animalName} image`} />
                 </div>
-                <div className={`animal-container ${getBackgroundClass(animal.animalName)} w-full overflow-auto ml-2 md:w-2/3 h-52 p-2 flex flex-col items-center rounded-lg transition-all duration-300 rotating-border`} style={{animationName: themeAnimationName(animal.animalName)}}>
-                  <h1 className="text-base md:text-xl mb-1">{animal.animalName}</h1>
-                  <h3 className="text-xs md:text-sm">{animal.animalInfo}</h3>
+                <div className={`animal-container ${getBackgroundClass(animal.animalName)} md:w-2/3 w-full overflow-auto mx-auto h-52 p-2 flex flex-col items-center rounded-lg transition-all duration-300 rotating-border`} style={{animationName: themeAnimationName(animal.animalName)}}>
+                  <h1 className="text-xl mb-1">{animal.animalName}</h1>
+                  <h3 className="text-sm">{animal.animalInfo}</h3>
                 </div>
               </div>
-              <div className={`animal-container ${getBackgroundClass(animal.animalName)} h-80 overflow-hidden hover:overflow-auto w-full md:w-1/2 mx-2 rounded-xl transition-all duration-300 rotating-border flex flex-col items-center justify-between p-4`} style={{animationName: themeAnimationName(animal.animalName)}}>
+              <div className={`animal-container ${getBackgroundClass(animal.animalName)} h-80 overflow-hidden hover:overflow-auto md:w-1/2 w-full md:mr-20 ml-2 rounded-xl transition-all duration-300 rotating-border flex flex-col items-center justify-between p-4`} style={{animationName: themeAnimationName(animal.animalName)}}>
                 <ul>
                   {renderList(animal)}
                 </ul>
-                <button className={`${selectedProduct[animal._id] || selectedBrand[animal._id] ? `${animal.animalName}-button shrink-0 p-2 textsm md:text-base` : 'hidden'}`} onClick={() => goBack(animal._id)}>Back</button>
+                <button className={`${selectedProduct[animal._id] || selectedBrand[animal._id] ? `${animal.animalName}-button shrink-0 my-2` : 'hidden'}`} onClick={() => goBack(animal._id)}>Back</button>
               </div>
             </div>
           </div>
