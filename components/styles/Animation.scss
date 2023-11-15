@@ -1,0 +1,228 @@
+$themes: (
+  Fish: (#60a5fa, #3b82f6, #2563eb, #1d4ed8),
+  Bird: (#facc15, #eab308, #ca8a04, #a16207),
+  Dog: (#DFDDB6, #BFBE9C, #9F9E82, #807F68),
+  Default: (#fb923c, #f97316, #ea580c, #c2410c)
+);
+
+.animal-container {
+  &.bg-fish { background-color: #bfdbfe; color: #1e40af; &::-webkit-scrollbar { width: 8px; height: 10px;}; &::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 6px; &:hover {background: #1d4ed8;}}}
+  &.bg-bird { background-color: #fef08a; color: #854d0e; &::-webkit-scrollbar { width: 8px; height: 10px;}; &::-webkit-scrollbar-thumb { background: #ca8a04; border-radius: 6px; &:hover {background: #a16207;}}}
+  &.bg-dog { background-color: #FFFDD0; color: #403F34; &::-webkit-scrollbar { width: 8px; height: 10px;}; &::-webkit-scrollbar-thumb { background: #9F9E82; border-radius: 6px; &:hover {background: #807F68;}}}
+  &.bg-cat { background-color: #fed7aa; color: #9a3412; &::-webkit-scrollbar { width: 8px; height: 10px;}; &::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 6px; &:hover {background: #c2410c;}}}
+}
+
+.default-scroll {
+  &::-webkit-scrollbar { width: 6px; height: 8px;}; &::-webkit-scrollbar-thumb { background: #64748b; border-radius: 6px; &:hover {background: #475569;}}
+}
+
+.rotating-border {
+  border-width: 4px;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+
+  --box-shadow-size: 5px;
+
+  &:hover {
+    --box-shadow-size: 10px;
+  }
+  
+  @each $theme, $colors in $themes {
+    @keyframes rotate#{$theme}Color {
+      0%, 100% { border-color: nth($colors, 1); box-shadow: 0 0 var(--box-shadow-size) nth($colors, 1); }
+      25% { border-color: nth($colors, 2); box-shadow: 0 0 var(--box-shadow-size) nth($colors, 2); }
+      50% { border-color: nth($colors, 3); box-shadow: 0 0 var(--box-shadow-size) nth($colors, 3); }
+      75% { border-color: nth($colors, 4); box-shadow: 0 0 var(--box-shadow-size) nth($colors, 4); }
+    }
+  }
+  &:hover {
+    box-shadow: 0 0 30px currentColor;
+  }
+}
+
+$colors: (
+  delete: #dc2626,
+  update: #0d9488,
+  fish: (#3b82f6),
+  bird: (#eab308),
+  dog: (#9F9E82),
+  cat: (#f97316)
+);
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+@mixin buttonStyles($color) {
+  position: relative;
+  display: inline-block;
+  justify-content: center;
+  width: 80px;
+  height: 40px;
+  color: $color;
+  font-size: small;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  letter-spacing: 2px;
+  
+  &:hover {
+    background: $color;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px $color,
+                0 0 10px $color,
+                0 0 20px $color,
+                0 0 50px $color;
+  }
+
+  span {
+    position: absolute;
+    display: block;
+  }
+
+  span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $color);
+    animation: btn-anim1 1s linear infinite;
+  }
+
+  span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, $color);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+
+  span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, $color);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+
+  span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, $color);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+}
+
+.delete-button {
+  @include buttonStyles(map-get($colors, delete));
+}
+
+.update-button {
+  @include buttonStyles(map-get($colors, update));
+}
+
+.fish-button {
+  @include buttonStyles(map-get($colors, fish));
+}
+
+.bird-button {
+  @include buttonStyles(map-get($colors, bird));
+}
+
+.dog-button {
+  @include buttonStyles(map-get($colors, dog));
+}
+
+.cat-button {
+  @include buttonStyles(map-get($colors, cat));
+}
+
+.input-border {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 4px;
+  border-radius: 12px;
+
+  &:focus-within {
+    box-shadow: 0 0 5px #67e8f9,
+                0 0 25px #67e8f9,
+                0 0 50px #67e8f9,
+                0 0 100px #67e8f9;
+  }
+}
+
+.custom-input {
+  width: 270px;
+  padding: 12px;
+  background: none;
+  border: none;
+  color: #042f2e;
+  font-size: 16px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.list-masonry {
+  max-width: 100%;
+  width: 788px;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-item-wrapper {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .list-masonry {
+    width: 18rem;
+  }
+  .list-item-wrapper {
+    margin-bottom: 10px;
+  }
+}
