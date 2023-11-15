@@ -167,9 +167,10 @@ const Forum: React.FC = () => {
                         .filter((post) => post.userId.userName.toLowerCase().includes(search.toLocaleLowerCase()) || post.postAnimal.toLowerCase().includes(search.toLocaleLowerCase()))
                         .map((post) => (
                                 <ul className={`animal-container ${getBackgroundClass(post.postAnimal)} mx-8 my-8 lg:rounded-xl rounded-2xl break-words lg:w-96 w-72 lg:p-3.5 p-2 transition-all duration-300 rotating-border`} style={{animationName: themeAnimationName(post.postAnimal)}}>
-                                    <h2 className='text-2xl mt-1 text-center'>{post.postAnimal}</h2>
-                                    <h3 className="lg:text-lg text-sm lg:mt-2 mt-1 h-28 bg-slate-100 rounded-xl p-2 overflow-auto default-scroll">{post.postText}</h3>
-                                    {post.userId._id === userId && (
+                                    {post.userId._id === userId ? (
+                                        <>
+                                            <h2 className='text-2xl mt-1 text-center'>{post.postAnimal}</h2>
+                                            <h3 className="lg:text-lg text-sm lg:mt-2 mt-1 h-28 bg-slate-100 rounded-xl p-2 overflow-auto default-scroll">{post.postText}</h3>
                                             <div className='flex justify-center mt-4'>
                                                 <button
                                                 className="update-button"
@@ -192,12 +193,23 @@ const Forum: React.FC = () => {
                                                 Delete
                                                 </button>
                                             </div>
+                                            <p className="lg:text-lg text-xs text-center lg:mt-2.5 mt-1">{post.userId.userName}</p>
+                                            <div className='flex justify-between mb-4'>
+                                                <p className="text-xs lg:mt-2.5 mt-1">Created At: {formatDate(post.createdAt)}</p>
+                                                {post.updatedAt && <p className="text-xs lg:mt-2.5 mt-1">Updated At: {formatDate(post.updatedAt)}</p>}
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <h2 className='text-2xl my-3 text-center'>{post.postAnimal}</h2>
+                                            <h3 className="lg:text-lg text-sm lg:my-2 mt-3 h-28 bg-slate-100 rounded-xl p-2 overflow-auto default-scroll">{post.postText}</h3>
+                                            <p className="lg:text-lg text-xs text-center lg:my-5 mt-1">{post.userId.userName}</p>
+                                            <div className='flex justify-between mb-8'>
+                                                <p className="text-xs lg:mt-2.5 mt-1">Created At: {formatDate(post.createdAt)}</p>
+                                                {post.updatedAt && <p className="text-xs lg:mt-2.5 mt-1">Updated At: {formatDate(post.updatedAt)}</p>}
+                                            </div>
+                                        </>
                                     )}
-                                    <p className="lg:text-lg text-xs text-center lg:mt-2.5 mt-1">{post.userId.userName}</p>
-                                    <div className='flex justify-between mb-4'>
-                                        <p className="text-xs lg:mt-2.5 mt-1">Created At: {formatDate(post.createdAt)}</p>
-                                        {post.updatedAt && <p className="text-xs lg:mt-2.5 mt-1">Updated At: {formatDate(post.updatedAt)}</p>}
-                                    </div>
                                     <CommentsSection postId={post._id} />
                                 </ul>
                         ))}
