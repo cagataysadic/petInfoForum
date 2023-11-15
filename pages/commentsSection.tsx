@@ -42,12 +42,12 @@ const CommentsSection: React.FC<{postId: string}> = ({ postId }) => {
     };
 
   return (
-    <div className="default-scroll bg-slate-100 h-60 lg:p-4 p-1 rounded-xl lg:mb-4 mb-1 flex flex-col overflow-auto">
+    <div className="default-scroll bg-slate-100 h-60 lg:p-4 p-2 rounded-xl lg:mb-4 mb-1 flex flex-col overflow-auto">
         <h3 className="text-neutral-950 lg:text-xl text-center text-sm lg:mb-2 mb-1">Comments</h3>
         {comments && comments.length > 0 && comments.map((comment) => (
             <CommentPart key={comment._id} comment={comment} postId={postId} refreshComments={fetchComments} userId={userId} />
         ))}
-        <form className="flex items-center justify-between w-full" onSubmit={handleSubmit}>
+        <form className="flex items-center justify-between my-auto w-full" onSubmit={handleSubmit}>
             <textarea
                 className="outline-emerald-200 focus:caret-emerald-800 bg-emerald-200 lg:w-72 w-44 h-40 p-2 text-sm rounded rounded-xl text-emerald-950 hover:shadow-lg hover:shadow-emerald-600 placeholder:text-emerald-950"
                 placeholder="Write a comment"

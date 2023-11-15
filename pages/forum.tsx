@@ -122,7 +122,7 @@ const Forum: React.FC = () => {
 
     return (
         <div className="bg-neutral-100  min-h-screen lg:pt-8 pt-3 flex flex-col">
-            <div className="flex justify-center mb-5">
+            <div className="flex justify-center my-6">
                 <input type="text" className="outline-emerald-500 focus:caret-emerald-600 bg-emerald-200 lg:w-96 w-64 lg:h-10 h-8 p-2 lg:text-base text-sm rounded-xl text-teal-800 placeholder:text-emerald-800 hover:shadow-lg hover:shadow-emerald-300" placeholder="search..." onChange={(e) => dispatch(setSearch(e.target.value))} />
             </div>
             <h1 className="text-neutral-900 text-center lg:text-4xl text-xl">Welcome</h1>
