@@ -42,7 +42,7 @@ const CommentsSection: React.FC<{postId: string}> = ({ postId }) => {
     };
 
   return (
-    <div className="default-scroll bg-slate-100 h-60 lg:p-4 p-1 rounded-xl lg:mb-2 mb-1 flex flex-col overflow-auto">
+    <div className="default-scroll bg-slate-100 h-60 lg:p-4 p-1 rounded-xl lg:mb-3 mb-1 flex flex-col overflow-auto">
         <h3 className="text-neutral-950 lg:text-xl text-center text-sm lg:mb-2 mb-1">Comments</h3>
         {comments && comments.length > 0 && comments.map((comment) => (
             <CommentPart key={comment._id} comment={comment} postId={postId} refreshComments={fetchComments} userId={userId} />
