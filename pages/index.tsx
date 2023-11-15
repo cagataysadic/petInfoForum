@@ -82,7 +82,7 @@ const Home: React.FC = () => {
       const brand = product?.brands.find(b => b.brandName === currentSelectedBrand);
       return (
         <>
-          <h1 className="flex justify-center mb-1">Brand Info</h1>
+          <h1 className="flex justify-center text-xl mb-1">Brand Info</h1>
           <li className="flex justify-center">{brand?.brandInfo}</li>
         </>
       );
@@ -92,9 +92,9 @@ const Home: React.FC = () => {
       const product = animal.careProducts.find(p => p.productName === currentSelectedProduct);
       return (
         <>
-          <h1 className="flex justify-center mb-2">Product Brands</h1>
+          <h1 className="flex justify-center text-xl mb-2">Product Brands</h1>
           {product?.brands.map((brand) => (
-            <li key={brand.brandName} className="flex justify-center" onClick={() => setSelectedBrand({ ...selectedBrand, [animal._id]: brand.brandName })}>
+            <li key={brand.brandName} className="flex justify-center text-lg hover:text-rose-400 cursor-pointer" onClick={() => setSelectedBrand({ ...selectedBrand, [animal._id]: brand.brandName })}>
               {brand.brandName}
             </li>
           ))}
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
       <>
         <h1 className="flex justify-center text-xl mb-2">Products</h1>
         {animal.careProducts.map((product) => (
-          <h3 className="flex justify-center text-lg" onClick={() => setSelectedProduct({ ...selectedProduct, [animal._id]: product.productName })}>
+          <h3 className="flex justify-center text-lg hover:text-rose-400 cursor-pointer" onClick={() => setSelectedProduct({ ...selectedProduct, [animal._id]: product.productName })}>
             {product.productName}
           </h3>
         ))}
