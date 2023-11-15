@@ -56,6 +56,8 @@ const Home: React.FC = () => {
         return 'rotateBirdColor';
       case 'DOG':
         return 'rotateDogColor';
+      case 'CAT':
+        return 'rotateCatColor';
       default:
         return 'rotateDefaultColor';
     }
