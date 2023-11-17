@@ -119,7 +119,7 @@ const Home: React.FC = () => {
       <div className="flex flex-wrap mt-4">
         {animals.map((animal) => (
           <div key={animal._id} className="md:w-1/2 w-full flex items-center my-4">
-            <div className="flex justify-between items-center w-full mx-2">
+            <div className="flex justify-between items-center w-full">
               <div className="flex flex-col items-center w-1/2">
                 <div className="rounded-lg p-1 transition-all duration-300 rotating-border" style={{animationName: themeAnimationName(animal.animalName)}}>
                   <Image src={getImageSrc(animal.animalName)} alt={`${animal.animalName} image`} />
@@ -129,7 +129,7 @@ const Home: React.FC = () => {
                   <h3 className="text-sm">{animal.animalInfo}</h3>
                 </div>
               </div>
-              <div className={`animal-container ${getBackgroundClass(animal.animalName)} h-80 overflow-hidden hover:overflow-auto md:w-1/2 w-full md:mr-20 ml-2 rounded-xl transition-all duration-300 rotating-border flex flex-col items-center justify-between p-4`} style={{animationName: themeAnimationName(animal.animalName)}}>
+              <div className={`animal-container ${getBackgroundClass(animal.animalName)} h-80 overflow-auto md:w-1/2 w-full md:mr-20 ml-2 rounded-xl transition-all duration-300 rotating-border flex flex-col items-center justify-between p-4`} style={{animationName: themeAnimationName(animal.animalName)}}>
                 <ul>
                   {renderList(animal)}
                 </ul>
