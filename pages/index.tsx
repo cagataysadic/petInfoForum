@@ -133,7 +133,7 @@ const Home: React.FC = () => {
                 <ul>
                   {renderList(animal)}
                 </ul>
-                <button className={`${selectedProduct[animal._id] || selectedBrand[animal._id] ? `${animal.animalName}-button shrink-0 my-2` : 'hidden'}`} onClick={() => goBack(animal._id)}>Back</button>
+                <button className={`${selectedProduct[animal._id] || selectedBrand[animal._id] ? `${animal.animalName}-button shrink-0 my-2 hover:text-rose-400` : 'hidden'}`} onClick={() => goBack(animal._id)}>Back</button>
               </div>
             </div>
           </div>
